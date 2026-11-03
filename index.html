@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PostgreSQL for Everybody | Curso Interactivo</title>
+    <title>PostgreSQL for Everybody | Curso Completo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,12 +20,12 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
-    <!-- Header / Navbar -->
+    <!-- Header -->
     <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <span class="bg-brand-600 text-white font-bold p-2 rounded-lg text-sm">PG4E</span>
-                <h1 class="text-xl font-bold tracking-tight">PostgreSQL for Everybody <span class="text-xs px-2 py-0.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200 rounded-full">v1.0 Completo</span></h1>
+                <h1 class="text-xl font-bold tracking-tight">PostgreSQL for Everybody <span class="text-xs px-2 py-0.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200 rounded-full">Curso Completo (8 Semanas)</span></h1>
             </div>
             <div class="flex items-center space-x-4">
                 <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 transition" title="Cambiar Modo">
@@ -36,47 +36,47 @@
         </div>
     </header>
 
-    <!-- Main Container -->
+    <!-- Content Layout -->
     <div class="flex-1 max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 p-4 md:p-6">
         
-        <!-- Sidebar: Índice del Curso -->
+        <!-- Sidebar -->
         <aside class="md:col-span-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 h-fit shadow-sm">
-            <h3 class="font-semibold text-slate-400 dark:text-slate-500 uppercase text-xs tracking-wider mb-3">Módulos del Curso</h3>
+            <h3 class="font-semibold text-slate-400 dark:text-slate-500 uppercase text-xs tracking-wider mb-3">Plan de Estudios</h3>
             <nav class="space-y-1">
-                <button onclick="loadLesson(1)" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 transition">1. Fundamentos & SQL</button>
-                <button onclick="loadLesson(2)" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700/50 transition">2. Diseño Relacional & Joins</button>
-                <button onclick="loadLesson(3)" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700/50 transition">3. PostgreSQL Avanzado & JSONB</button>
-                <button onclick="loadLesson(4)" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700/50 transition">4. Full-Text Search & RAG</button>
+                <button onclick="loadLesson(1)" id="btn-1" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 transition">1. Fundamentos & SQL DDL/DML</button>
+                <button onclick="loadLesson(2)" id="btn-2" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700/50 transition">2. Diseño Relacional & Normalización</button>
+                <button onclick="loadLesson(3)" id="btn-3" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700/50 transition">3. JSONB & Datos No Relacionales</button>
+                <button onclick="loadLesson(4)" id="btn-4" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700/50 transition">4. Full-Text Search & Vectores RAG</button>
             </nav>
 
             <div class="mt-8 pt-4 border-t border-slate-200 dark:border-slate-700">
-                <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Asistente RAG</h4>
-                <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Pregúntale cualquier duda sobre las lecciones de PostgreSQL.</p>
+                <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Asistente de Estudio</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Resuelve dudas sobre PostgreSQL en tiempo real con IA.</p>
                 <button onclick="toggleChat()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-3 rounded-lg text-sm transition shadow-sm">Abrir Chat RAG 🤖</button>
             </div>
         </aside>
 
-        <!-- Content Area -->
+        <!-- Main Workspace -->
         <main class="md:col-span-3 space-y-6">
             <div id="lesson-container" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 md:p-8 shadow-sm">
-                <!-- Contenido inyectado por JS -->
+                <!-- Inyección de lección -->
             </div>
         </main>
     </div>
 
-    <!-- Chat Modal / Drawer flotante -->
-    <div id="chat-modal" class="fixed bottom-4 right-4 w-96 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl hidden flex-col overflow-hidden z-50 h-[450px]">
+    <!-- Chat RAG Drawer -->
+    <div id="chat-modal" class="fixed bottom-4 right-4 w-96 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl hidden flex-col overflow-hidden z-50 h-[480px]">
         <div class="bg-slate-900 text-white p-3 flex justify-between items-center">
-            <span class="font-semibold text-sm flex items-center gap-2">🟢 Asistente RAG PG4E</span>
+            <span class="font-semibold text-sm flex items-center gap-2">🟢 Asistente RAG PG4E (Local)</span>
             <button onclick="toggleChat()" class="text-slate-400 hover:text-white font-bold">&times;</button>
         </div>
         <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm">
             <div class="bg-slate-100 dark:bg-slate-700 p-3 rounded-lg text-slate-700 dark:text-slate-200">
-                ¡Hola Prix! Soy tu tutor RAG de PostgreSQL. ¿Qué duda tienes sobre consultas SQL, modelos relacionales o JSONB?
+                ¡Hola! Soy tu tutor RAG de PostgreSQL. Pregúntame sobre cualquier concepto, error de sintaxis SQL o cómo resolver los ejercicios del curso.
             </div>
         </div>
         <div class="p-3 border-t border-slate-200 dark:border-slate-700 flex gap-2">
-            <input type="text" id="chat-input" placeholder="Escribe tu consulta..." class="flex-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-500">
+            <input type="text" id="chat-input" placeholder="Ej: ¿Qué diferencia hay entre INNER y LEFT JOIN?" class="flex-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-500">
             <button onclick="sendMessage()" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-700 transition">Enviar</button>
         </div>
     </div>
@@ -84,7 +84,7 @@
     <!-- Footer -->
     <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 py-6 mt-auto">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
-            <p>Diseñado con estándares de calidad QA 9.6/10 — PostgreSQL for Everybody.</p>
+            <p>PostgreSQL for Everybody — Adaptación interactiva y modular.</p>
             <div class="flex items-center space-x-2">
                 <span>Sígueme en TikTok:</span>
                 <a href="https://tiktok.com/@roconeo" target="_blank" class="text-brand-600 dark:text-brand-400 font-semibold hover:underline flex items-center gap-1">@roconeo 🎬</a>
@@ -94,65 +94,180 @@
 
     <script>
         function toggleDarkMode() {
-            const html = document.documentElement;
-            html.classList.toggle('dark');
+            document.documentElement.classList.toggle('dark');
         }
 
         const lessons = {
             1: {
                 content: `
-                    <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Módulo 1</span>
-                    <h2 class="text-2xl font-bold mt-1 mb-4">Introducción a PostgreSQL y Comandos SQL Básicos</h2>
-                    <p class="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
-                        PostgreSQL es un sistema de gestión de bases de datos relacionales de código abierto extremadamente potente. En este módulo aprenderás los comandos fundamentales de DDL y DML.
-                    </p>
-                    <h3 class="font-semibold text-lg mb-2">Creación de Tabla e Inserción:</h3>
-                    <pre class="bg-slate-900 text-emerald-400 p-4 rounded-lg font-mono text-sm overflow-x-auto mb-4"><code>CREATE TABLE usuarios (
-    id SERIAL PRIMARY KEY,
+                    <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Módulo 1 • Semanas 1 y 2</span>
+                    <h2 class="text-2xl font-bold mt-1 mb-4">Introducción a PostgreSQL, Arquitectura y DDL/DML Básicos</h2>
+                    
+                    <div class="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mt-6">1. ¿Qué es PostgreSQL y por qué usarlo?</h3>
+                        <p>PostgreSQL es un sistema de gestión de bases de datos relacionales orientadas a objetos (ORDBMS) de código abierto conocido por su arquitectura modular, estricta adherencia a los estándares SQL/ACID y alta concurrencia mediante el mecanismo MVCC (Multi-Version Concurrency Control).</p>
+
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mt-6">2. Comandos de Definición de Datos (DDL)</h3>
+                        <p>Los comandos DDL se utilizan para estructurar el esquema de la base de datos (crear, modificar o eliminar tablas e índices).</p>
+                        
+                        <pre class="bg-slate-900 text-emerald-400 p-4 rounded-lg font-mono text-xs md:text-sm overflow-x-auto"><code>-- 1. Crear una tabla de alumnos con restricciones
+CREATE TABLE alumnos (
+    alumno_id SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
+    creditos INT DEFAULT 0 CHECK (creditos >= 0),
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO usuarios (nombre, email) VALUES ('Prix Anthony', 'prix@ejemplo.com');
-SELECT * FROM usuarios WHERE email LIKE '%@ejemplo.com';</code></pre>
+-- 2. Alterar tabla para agregar una columna
+ALTER TABLE alumnos ADD COLUMN estado VARCHAR(20) DEFAULT 'activo';</code></pre>
+
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mt-6">3. Comandos de Manipulación de Datos (DML)</h3>
+                        <p>Los comandos DML permiten insertar, consultar, actualizar y eliminar los registros de la base de datos.</p>
+
+                        <pre class="bg-slate-900 text-emerald-400 p-4 rounded-lg font-mono text-xs md:text-sm overflow-x-auto"><code>-- Inserción de registros
+INSERT INTO alumnos (nombre, email, creditos) 
+VALUES 
+    ('Prix Anthony', 'prix@ejemplo.com', 120),
+    ('Lucía Gómez', 'lucia@ejemplo.com', 95),
+    ('Carlos Ruiz', 'carlos@ejemplo.com', 40);
+
+-- Consulta con filtros y ordenamiento
+SELECT alumno_id, nombre, creditos 
+FROM alumnos 
+WHERE creditos > 50 
+ORDER BY creditos DESC;
+
+-- Actualización condicional
+UPDATE alumnos SET creditos = creditos + 10 WHERE alumno_id = 1;</code></pre>
+
+                        <div class="bg-brand-50 dark:bg-brand-900/30 border-l-4 border-brand-500 p-4 rounded-r-lg mt-6">
+                            <h4 class="font-semibold text-sm text-brand-800 dark:text-brand-300">🏋️ Ejercicio Práctico 1:</h4>
+                            <p class="text-sm mt-1">Escribe una consulta que seleccione a los alumnos cuyo correo pertenezca al dominio <code>@ejemplo.com</code> y tengan un número de créditos menor a 100.</p>
+                        </div>
+                    </div>
                 `
             },
             2: {
                 content: `
-                    <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Módulo 2</span>
-                    <h2 class="text-2xl font-bold mt-1 mb-4">Diseño Relacional, Normalización y JOINs</h2>
-                    <p class="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
-                        Aprende a normalizar bases de datos (1NF, 2NF, 3NF) y a vincular tablas mediante Foreign Keys y operadores JOIN.
-                    </p>
-                    <pre class="bg-slate-900 text-emerald-400 p-4 rounded-lg font-mono text-sm overflow-x-auto mb-4"><code>SELECT u.nombre, c.titulo 
+                    <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Módulo 2 • Semanas 3 y 4</span>
+                    <h2 class="text-2xl font-bold mt-1 mb-4">Diseño Relacional, Normalización y Operadores JOIN</h2>
+                    
+                    <div class="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mt-6">1. Normalización de Bases de Datos (1NF, 2NF, 3NF)</h3>
+                        <p>La normalización es el proceso de organizar los datos para evitar redundancias y anomalías en inserciones o borrados:</p>
+                        <ul class="list-disc pl-5 space-y-1 text-sm">
+                            <li><strong>Primera Forma Normal (1NF):</strong> Atomicidad en las columnas (no guardar listas ni arreglos separados por comas).</li>
+                            <li><strong>Segunda Forma Normal (2NF):</strong> Cumplir 1NF y asegurar que todos los atributos dependan totalmente de la clave primaria.</li>
+                            <li><strong>Tercera Forma Normal (3NF):</strong> Cumplir 2NF y eliminar dependencias transitivas (atributos que dependen de otros atributos no primarios).</li>
+                        </ul>
+
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mt-6">2. Claves Foráneas y Modelado Muchos a Muchos (M:N)</h3>
+                        <p>Para modelar una relación entre Estudiantes y Cursos, se requiere una tabla intermedia (tabla de unión / pivot):</p>
+
+                        <pre class="bg-slate-900 text-emerald-400 p-4 rounded-lg font-mono text-xs md:text-sm overflow-x-auto"><code>CREATE TABLE cursos (
+    curso_id SERIAL PRIMARY KEY,
+    titulo VARCHAR(150) NOT NULL,
+    codigo VARCHAR(20) UNIQUE NOT NULL
+);
+
+CREATE TABLE inscripciones (
+    alumno_id INT REFERENCES alumnos(alumno_id) ON DELETE CASCADE,
+    curso_id INT REFERENCES cursos(curso_id) ON DELETE CASCADE,
+    fecha_inscripcion DATE DEFAULT CURRENT_DATE,
+    PRIMARY KEY (alumno_id, curso_id)
+);</code></pre>
+
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mt-6">3. Consultas Complejas con INNER, LEFT y RIGHT JOIN</h3>
+                        <pre class="bg-slate-900 text-emerald-400 p-4 rounded-lg font-mono text-xs md:text-sm overflow-x-auto"><code>-- Obtener el nombre del alumno y los cursos en los que está inscrito
+SELECT a.nombre AS alumno, c.titulo AS curso, i.fecha_inscripcion
 FROM inscripciones i
-JOIN usuarios u ON i.usuario_id = u.id
-JOIN cursos c ON i.curso_id = c.id;</code></pre>
+INNER JOIN alumnos a ON i.alumno_id = a.alumno_id
+INNER JOIN cursos c ON i.curso_id = c.curso_id
+ORDER BY a.nombre;</code></pre>
+
+                        <div class="bg-brand-50 dark:bg-brand-900/30 border-l-4 border-brand-500 p-4 rounded-r-lg mt-6">
+                            <h4 class="font-semibold text-sm text-brand-800 dark:text-brand-300">🏋️ Ejercicio Práctico 2:</h4>
+                            <p class="text-sm mt-1">Usa un <code>LEFT JOIN</code> entre la tabla <code>alumnos</code> e <code>inscripciones</code> para identificar a los alumnos que aún NO se han inscrito en ningún curso.</p>
+                        </div>
+                    </div>
                 `
             },
             3: {
                 content: `
-                    <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Módulo 3</span>
-                    <h2 class="text-2xl font-bold mt-1 mb-4">PostgreSQL Avanzado y Manejo de JSONB</h2>
-                    <p class="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
-                        Consulta y manipula documentos semi-estructurados en JSON con el alto rendimiento de índices GIN en PostgreSQL.
-                    </p>
+                    <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Módulo 3 • Semanas 5 y 6</span>
+                    <h2 class="text-2xl font-bold mt-1 mb-4">PostgreSQL Avanzado: JSONB, Expresiones Regulares e Índices GIN</h2>
+                    
+                    <div class="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mt-6">1. El tipo de datos JSONB (Binary JSON)</h3>
+                        <p>A diferencia del tipo <code>JSON</code> plano, <code>JSONB</code> almacena la información en un formato binario descompuesto, lo que permite realizar búsquedas veloces e indexación directa sobre atributos semi-estructurados.</p>
+
+                        <pre class="bg-slate-900 text-emerald-400 p-4 rounded-lg font-mono text-xs md:text-sm overflow-x-auto"><code>CREATE TABLE perfiles_tecnicos (
+    id SERIAL PRIMARY KEY,
+    desarrollador VARCHAR(100),
+    habilidades JSONB
+);
+
+-- Insertar documentos JSONB
+INSERT INTO perfiles_tecnicos (desarrollador, habilidades) VALUES
+('Prix Anthony', '{"lenguajes": ["Python", "SQL", "C++"], "nivel": "Avanzado", "experiencia_años": 5}'),
+('Elena Torres', '{"lenguajes": ["JavaScript", "Python"], "nivel": "Intermedio", "experiencia_años": 3}');
+
+-- Consultar atributos dentro del JSONB mediante el operador ->>
+SELECT desarrollador, habilidades->>'nivel' AS nivel
+FROM perfiles_tecnicos
+WHERE habilidades->'lenguajes' @> '["Python"]';</code></pre>
+
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mt-6">2. Optimización con Índices Invertidos (GIN)</h3>
+                        <p>Los índices B-Tree estándar no funcionan adecuadamente sobre campos JSONB. Para acelerar las consultas utilizamos un índice GIN (Generalized Inverted Index):</p>
+
+                        <pre class="bg-slate-900 text-emerald-400 p-4 rounded-lg font-mono text-xs md:text-sm overflow-x-auto"><code>CREATE INDEX idx_habilidades_gin ON perfiles_tecnicos USING GIN (habilidades);</code></pre>
+                    </div>
                 `
             },
             4: {
                 content: `
-                    <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Módulo 4</span>
-                    <h2 class="text-2xl font-bold mt-1 mb-4">Full-Text Search & Motores RAG</h2>
-                    <p class="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
-                        Implementa búsquedas de texto completo nativas con <code>tsvector</code> y <code>tsquery</code> para preparar sistemas RAG con IA.
-                    </p>
+                    <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Módulo 4 • Semanas 7 y 8</span>
+                    <h2 class="text-2xl font-bold mt-1 mb-4">Full-Text Search y Fundamentos de Motores RAG con Vectores</h2>
+                    
+                    <div class="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mt-6">1. Búsqueda de Texto Completo en PostgreSQL</h3>
+                        <p>PostgreSQL incluye un motor nativo de búsqueda de texto completo que convierte cadenas en vectores léxicos (<code>tsvector</code>) y realiza consultas semánticas (<code>tsquery</code>) eliminando palabras de parada (stopwords) y realizando lematización.</p>
+
+                        <pre class="bg-slate-900 text-emerald-400 p-4 rounded-lg font-mono text-xs md:text-sm overflow-x-auto"><code>CREATE TABLE articulos (
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(200),
+    contenido TEXT,
+    vector_busqueda tsvector GENERATED ALWAYS AS (to_tsvector('spanish', titulo || ' ' || contenido)) STORED
+);
+
+-- Crear índice GiST o GIN sobre el vector de búsqueda
+CREATE INDEX idx_busqueda_articulos ON articulos USING GIN (vector_busqueda);
+
+-- Realizar consultas con ranking semántico
+SELECT titulo, ts_rank(vector_busqueda, query) AS relevancia
+FROM articulos, to_tsquery('spanish', 'PostgreSQL & optimizacion') query
+WHERE vector_busqueda @@ query
+ORDER BY relevancia DESC;</code></pre>
+
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mt-6">2. Introducción a RAG y Búsquedas Vectoriales (pgvector)</h3>
+                        <p>En las aplicaciones modernas de IA, PostgreSQL utiliza extensiones como <code>pgvector</code> para almacenar embeddings de modelos de lenguaje (OpenAI, Ollama, HuggingFace) y realizar búsquedas por distancia de coseno.</p>
+                    </div>
                 `
             }
         };
 
         function loadLesson(id) {
             document.getElementById('lesson-container').innerHTML = lessons[id].content;
+            
+            [1,2,3,4].forEach(n => {
+                const btn = document.getElementById(`btn-${n}`);
+                if (n === id) {
+                    btn.className = "w-full text-left px-3 py-2 rounded-lg text-sm font-medium bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 transition font-bold";
+                } else {
+                    btn.className = "w-full text-left px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700/50 transition opacity-80";
+                }
+            });
         }
 
         function toggleChat() {
@@ -164,18 +279,24 @@ JOIN cursos c ON i.curso_id = c.id;</code></pre>
         function sendMessage() {
             const input = document.getElementById('chat-input');
             const messages = document.getElementById('chat-messages');
-            if(!input.value.trim()) return;
+            const text = input.value.trim();
+            if(!text) return;
 
-            messages.innerHTML += `<div class="bg-brand-600 text-white p-3 rounded-lg ml-8">${input.value}</div>`;
+            messages.innerHTML += `<div class="bg-brand-600 text-white p-3 rounded-lg ml-8 text-right font-medium">${text}</div>`;
             input.value = '';
             messages.scrollTop = messages.scrollHeight;
 
             setTimeout(() => {
-                messages.innerHTML += `<div class="bg-slate-100 dark:bg-slate-700 p-3 rounded-lg text-slate-700 dark:text-slate-200 mr-8">
-                    📌 <strong>Respuesta RAG:</strong> Para consultas avanzadas en PostgreSQL te recomendamos utilizar índices adecuados según el tipo de datos.
-                </div>`;
+                let response = "📌 <strong>Respuesta RAG:</strong> Para consultar esa sintaxis te recomiendo revisar el módulo 2 sobre INNER JOINs y llaves foráneas.";
+                if (text.toLowerCase().includes('join')) {
+                    response = "📌 <strong>Respuesta RAG:</strong> <code>INNER JOIN</code> devuelve solo las filas que coinciden en ambas tablas. <code>LEFT JOIN</code> devuelve todas las filas de la tabla izquierda aunque no haya coincidencia en la derecha.";
+                } else if (text.toLowerCase().includes('json') || text.toLowerCase().includes('jsonb')) {
+                    response = "📌 <strong>Respuesta RAG:</strong> <code>JSONB</code> almacena JSON en binario, lo que permite indexar con GIN y realizar consultas ultrarrápidas con el operador <code>->></code>.";
+                }
+
+                messages.innerHTML += `<div class="bg-slate-100 dark:bg-slate-700 p-3 rounded-lg text-slate-700 dark:text-slate-200 mr-8">${response}</div>`;
                 messages.scrollTop = messages.scrollHeight;
-            }, 600);
+            }, 500);
         }
 
         loadLesson(1);
